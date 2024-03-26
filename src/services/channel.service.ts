@@ -27,6 +27,12 @@ export class ChannelService {
     return createdChannel;
   }
 
+  // create many channels
+  public async createChannels(channelData: Channel[]): Promise<Channel[]> {
+    const createdChannels: Channel[] = await ChannelModel.insertMany(channelData);
+    return createdChannels;
+  }
+
   public async updateChannel(channelId: string, channelData: Channel): Promise<Channel> {
     const existingChannel: Channel = await ChannelModel.findOne({ yt_channel_id: channelId });
     if (!existingChannel) {

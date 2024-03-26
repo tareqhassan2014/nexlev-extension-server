@@ -19,5 +19,6 @@ export class ChannelRoute implements Routes {
     this.router.post(`${this.path}`, ValidationMiddleware(CreateChannelDto), this.channelController.createChannel);
     this.router.put(`${this.path}/:id`, ValidationMiddleware(CreateChannelDto, true), this.channelController.updateChannel);
     this.router.delete(`${this.path}/:id`, this.channelController.deleteChannel);
+    this.router.post(`${this.path}/many`, ValidationMiddleware(CreateChannelDto, true), this.channelController.createChannels);
   }
 }

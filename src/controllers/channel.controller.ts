@@ -35,6 +35,16 @@ export class ChannelController {
     }
   };
 
+  public createChannels = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const newChannelsData: Channel[] = req.body;
+      const createdChannels: Channel[] = await this.channelService.createChannels(newChannelsData);
+      res.status(201).json({ data: createdChannels, message: 'Channels created successfully' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   public updateChannel = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const channelId: string = req.params.id;
